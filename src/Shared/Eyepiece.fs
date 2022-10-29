@@ -24,3 +24,16 @@ type Eyepiece = {
     ApparentFieldOfView: ApparentFieldOfView
 }
 
+//module Eyepiece =
+//    let calculateSomething  =
+//        let ep = Eyepiece {
+//            Id = Guid.NewGuid();
+//            Manufacturer = Manufacturer "TeleVue";
+//            Design = Design "Plossl";
+//            FocalLength = FocalLength 9<mm>;
+//            EyeRelief = EyeRelief 20<mm>;
+//            BarrelDiameter = BarrelDiameter 2.0<inch>;
+//            ApparentFieldOfView = ApparentFieldOfView 72<degree>
+//        }
+
+    

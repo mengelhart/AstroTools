@@ -18,8 +18,7 @@ let todosApi =
     |> Remoting.buildProxy<ITodosApi>
 
 let init () : Model * Cmd<Msg> =
-    let model = { Todos = []; Input = "", EyePiece = Equipment.Eyepiece }
-
+    let model = { Todos = []; Input = "" }
     let cmd = Cmd.OfAsync.perform todosApi.getTodos () GotTodos
 
     model, cmd

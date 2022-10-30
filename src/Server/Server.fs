@@ -11,9 +11,26 @@ open Shared
 module Storage =
     let [<Literal>] dbVendor = Common.DatabaseProviderTypes.POSTGRESQL
     let [<Literal>] connString = "Host=localhost;Database=astro_tools_local;Username=mengelhart;Password="
-   
+    let [<Literal>] connStringName = "DefaultConnectionString"
+    let [<Literal>] resolutionPath = ""
+    let [<Literal>] indivAmount = 1000
+    let [<Literal>] useOptTypes  = true
+
+    let [<Literal>] owner = "public, admin, references"
+
+
+    type sql =        
+        SqlDataProvider<
+            dbVendor,
+            connString,
+            "",         //ConnectionNameString can be left empty 
+            resolutionPath,
+            indivAmount,
+            FSharp.Data.Sql.Common.NullableColumnType.OPTION,
+            owner>
+    
     let todos = ResizeArray()
-    let addTodo (todo: Todo) =
+    let addTodo (todo: Todo) =        
         if Todo.isValid todo.Description then
             todos.Add todo
             Ok()
@@ -36,7 +53,8 @@ let todosApi =
                     match Storage.addTodo todo with
                     | Ok () -> todo
                     | Error e -> failwith e
-            } }
+            }
+    }
 
 let webApp =
     Remoting.createApi ()

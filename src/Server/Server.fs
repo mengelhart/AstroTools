@@ -1,5 +1,7 @@
 module Server
 
+open FSharp.Data.Sql
+
 open Fable.Remoting.Server
 open Fable.Remoting.Giraffe
 open Saturn
@@ -7,8 +9,10 @@ open Saturn
 open Shared
 
 module Storage =
+    let [<Literal>] dbVendor = Common.DatabaseProviderTypes.POSTGRESQL
+    let [<Literal>] connString = "Host=localhost;Database=astro_tools_local;Username=mengelhart;Password="
+   
     let todos = ResizeArray()
-
     let addTodo (todo: Todo) =
         if Todo.isValid todo.Description then
             todos.Add todo
